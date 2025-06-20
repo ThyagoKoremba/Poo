@@ -1,0 +1,14 @@
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\exceptions\IllegalOrphanException.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\exceptions\NonexistentEntityException.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\exceptions\PreexistingEntityException.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\IGU\TiendaBase.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\LOGICA\Cajero.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\LOGICA\Categoria.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\Modelo.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\PERSISTENCIA\CajeroJpaController.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\PERSISTENCIA\CategoriaJpaController.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\PERSISTENCIA\exceptions\IllegalOrphanException.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\PERSISTENCIA\exceptions\NonexistentEntityException.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\PERSISTENCIA\exceptions\PreexistingEntityException.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\PERSISTENCIA\PersistenciaController.java
+C:\Users\xthy\OneDrive\Documentos\NetBeansProjects\Tienda\src\main\java\com\mycompany\tienda\Tienda.java
