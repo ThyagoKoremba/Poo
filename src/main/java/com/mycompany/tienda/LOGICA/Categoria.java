@@ -5,11 +5,13 @@
 package com.mycompany.tienda.LOGICA;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 
 /**
@@ -23,6 +25,9 @@ public class Categoria implements Serializable {
     private int id;
     @Basic
     private String descripcion;
+    
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
 
     public Categoria(int id, String descripcion) {
         this.id = id;

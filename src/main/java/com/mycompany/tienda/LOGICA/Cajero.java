@@ -2,11 +2,13 @@
 package com.mycompany.tienda.LOGICA;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -20,6 +22,10 @@ public class Cajero implements Serializable {
     @Basic
     private String user;
     private String contraseña;
+    
+    @OneToOne(mappedBy="cajero")
+    private List<Venta> ventas;
+    
 
 public Cajero() {
     }
