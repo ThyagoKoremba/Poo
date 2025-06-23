@@ -1,0 +1,271 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package com.mycompany.tienda.IGU;
+
+import com.mycompany.tienda.LOGICA.Categoria;
+import com.mycompany.tienda.LOGICA.LogicaController;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
+import javax.swing.*;
+import javax.swing.table.TableCellRenderer;
+import java.awt.*;
+
+/**
+ *
+ * @author xthy
+ */
+public class Categorias extends javax.swing.JFrame {
+
+    /**
+     * Creates new form Categorias
+     */
+    private void cargarCategorias() {
+        LogicaController control = new LogicaController(); // o pasalo por el constructor
+        List<Categoria> lista = control.CategoriasAll(); // Este método debería devolverte las categorías
+
+        DefaultTableModel modelo = new DefaultTableModel() {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                // Solo columnas 2 y 3 ("Editar" y "Ver productos") son editables (para los botones)
+                return column == 2 || column == 3;
+            }
+        };
+
+        modelo.addColumn("ID");
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Editar");
+        modelo.addColumn("Ver productos");
+
+        for (Categoria cat : lista) {
+            modelo.addRow(new Object[]{
+                cat.getId(),
+                cat.getDescripcion(),
+                "Editar",
+                "Ver productos"
+            });
+        }
+
+        tablaCategorias.setModel(modelo);
+        tablaCategorias.getColumnModel().getColumn(2).setCellRenderer(new ButtonRenderer());
+        tablaCategorias.getColumnModel().getColumn(2).setCellEditor(new ButtonEditor(tablaCategorias, 2));
+
+// Columna 3: Ver productos
+        tablaCategorias.getColumnModel().getColumn(3).setCellRenderer(new ButtonRenderer());
+        tablaCategorias.getColumnModel().getColumn(3).setCellEditor(new ButtonEditor(tablaCategorias, 3));
+    }
+
+    public class ButtonRenderer extends JButton implements TableCellRenderer {
+
+        public ButtonRenderer() {
+            setOpaque(true);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value,
+                boolean isSelected, boolean hasFocus, int row, int column) {
+            setText((value == null) ? "" : value.toString());
+            return this;
+        }
+    }
+
+    public class ButtonEditor extends DefaultCellEditor {
+
+        protected JButton button;
+        private String label;
+        private boolean isPushed;
+        private JTable table;
+        private int column;
+
+        public ButtonEditor(JTable table, int column) {
+            super(new JCheckBox());
+            this.table = table;
+            this.column = column;
+
+            button = new JButton();
+            button.setOpaque(true);
+            button.addActionListener(e -> fireEditingStopped());
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value,
+                boolean isSelected, int row, int col) {
+            label = (value == null) ? "" : value.toString();
+            button.setText(label);
+            isPushed = true;
+            return button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            LogicaController control = new LogicaController();
+            if (isPushed) {
+                int row = table.getSelectedRow();
+                Long idCategoria = Long.valueOf(table.getValueAt(row, 0).toString());
+
+                if (column == 2) {
+                    int idCat = Integer.parseInt(table.getValueAt(row, 0).toString());
+                    Categoria categoria = control.findCategoria(idCat);
+                    new EditarCategoria(categoria).setVisible(true);
+                    Categorias.this.dispose();
+                    
+                   
+                } else if (column == 3) {
+                    int idCat = Integer.parseInt(table.getValueAt(row, 0).toString());
+                    Categoria categoria = control.findCategoria(idCat);
+                    new CategoriaProductos(categoria).setVisible(true);
+                }
+            }
+            isPushed = false;
+            return label;
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            isPushed = false;
+            return super.stopCellEditing();
+        }
+    }
+
+    public Categorias() {
+        initComponents();
+        cargarCategorias();
+        setTitle("Categorías");
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setLocationRelativeTo(null);
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        NuevaCategoria = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaCategorias = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        NuevaCategoria.setText("Nueva");
+        NuevaCategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NuevaCategoriaActionPerformed(evt);
+            }
+        });
+
+        tablaCategorias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "ID", "Nombre", "Editar", "Ver Productos"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tablaCategorias);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(NuevaCategoria)
+                .addGap(32, 32, 32))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(NuevaCategoria)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void NuevaCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NuevaCategoriaActionPerformed
+        new CrearCategoria().setVisible(true);
+        this.dispose(); 
+    }//GEN-LAST:event_NuevaCategoriaActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Categorias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Categorias().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton NuevaCategoria;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tablaCategorias;
+    // End of variables declaration//GEN-END:variables
+}

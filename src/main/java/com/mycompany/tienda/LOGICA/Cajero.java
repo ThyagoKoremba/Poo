@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -23,7 +23,7 @@ public class Cajero implements Serializable {
     private String user;
     private String contraseña;
     
-    @OneToOne(mappedBy="cajero")
+    @OneToMany(mappedBy="cajero")
     private List<Venta> ventas;
     
 

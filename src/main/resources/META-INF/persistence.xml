@@ -4,6 +4,9 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.tienda.LOGICA.Cajero</class>
     <class>com.mycompany.tienda.LOGICA.Categoria</class>
+    <class>com.mycompany.tienda.LOGICA.Producto</class>
+    <class>com.mycompany.tienda.LOGICA.Venta</class>
+    <class>com.mycompany.tienda.LOGICA.VentaProductos</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/javaparcial?zeroDateTimeBehavior=CONVERT_TO_NULL"/>
       <property name="javax.persistence.jdbc.user" value="root"/>

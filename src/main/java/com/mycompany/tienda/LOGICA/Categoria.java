@@ -28,7 +28,6 @@ public class Categoria implements Serializable {
     
     @OneToMany(mappedBy = "categoria")
     private List<Producto> productos;
-
     public Categoria(int id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;
@@ -53,6 +52,11 @@ public class Categoria implements Serializable {
     public Categoria() {
     }
 
+    @Override
+    public String toString() {
+        return this.descripcion;
+    }
+    
 }
 
 

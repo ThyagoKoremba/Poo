@@ -24,20 +24,56 @@ import javax.persistence.OneToMany;
 public class Venta implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
-    private long Id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
+
     private LocalDate fecha;
-    
+
     @ManyToOne
-    @JoinColumn(name="cajero_id")
+    @JoinColumn(name = "cajero_id")
     private Cajero cajero;
-    
-    @OneToMany(mappedBy="venta",cascade=CascadeType.ALL)
-    private List<VentaProductos>productos;
-    
-    public double getTotal(){
-    return productos.stream()
-            .mapToDouble(VentaProductos::getSubtotal)
-            .sum();
+
+    @OneToMany(mappedBy = "venta", cascade = CascadeType.ALL)
+    private List<VentaProductos> productos;
+
+    public Venta() {
+    }
+
+    public double getTotal() {
+        return productos.stream()
+                .mapToDouble(VentaProductos::getSubtotal)
+                .sum();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public LocalDate getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
+    }
+
+    public Cajero getCajero() {
+        return cajero;
+    }
+
+    public void setCajero(Cajero cajero) {
+        this.cajero = cajero;
+    }
+
+    public List<VentaProductos> getProductos() {
+        return productos;
+    }
+
+    public void setProductos(List<VentaProductos> productos) {
+        this.productos = productos;
     }
 }

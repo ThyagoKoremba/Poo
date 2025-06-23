@@ -19,10 +19,14 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class Producto implements Serializable {
+
+    public Long getId() {
+        return Id;
+    }
     
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    private int Id;
+    private Long Id;
     @Basic
     private String nombre;
     private double precio;
@@ -32,11 +36,9 @@ public class Producto implements Serializable {
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
     private Categoria categoria;
     
-    public int getId() {
-        return Id;
-    }
 
-    public void setId(int Id) {
+
+    public void setId(Long Id) {
         this.Id = Id;
     }
 
@@ -72,7 +74,7 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    public Producto(int Id, String nombre, double precio, int stock, Categoria categoria) {
+    public Producto(Long Id, String nombre, double precio, int stock, Categoria categoria) {
         this.Id = Id;
         this.nombre = nombre;
         this.precio = precio;

@@ -1,45 +1,50 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.tienda.LOGICA;
 
+import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Embeddable;
 
-/**
- *
- * @author xthy
- */
-public class VentaProductoId {
+@Embeddable
+public class VentaProductoId implements Serializable {
+
+    private Long ventaId;
+    private Long productoId;
+
+    public VentaProductoId() {
+    }
+
+    public VentaProductoId(Long ventaId, Long productoId) {
+        this.ventaId = ventaId;
+        this.productoId = productoId;
+    }
+
+    public Long getVentaId() {
+        return ventaId;
+    }
+
+    public void setVentaId(Long ventaId) {
+        this.ventaId = ventaId;
+    }
+
+    public Long getProductoId() {
+        return productoId;
+    }
+
+    public void setProductoId(Long productoId) {
+        this.productoId = productoId;
+    }
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 67 * hash + Objects.hashCode(this.ventaId);
-        hash = 67 * hash + Objects.hashCode(this.productoId);
-        return hash;
+        return Objects.hash(ventaId, productoId);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final VentaProductoId other = (VentaProductoId) obj;
-        if (!Objects.equals(this.ventaId, other.ventaId)) {
-            return false;
-        }
-        return Objects.equals(this.productoId, other.productoId);
+        if (this == obj) return true;
+        if (!(obj instanceof VentaProductoId)) return false;
+        VentaProductoId other = (VentaProductoId) obj;
+        return Objects.equals(this.ventaId, other.ventaId)
+            && Objects.equals(this.productoId, other.productoId);
     }
-    
-    private Long ventaId;
-    private Long productoId;
-    
-    
 }

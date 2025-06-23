@@ -4,17 +4,16 @@
 
 package com.mycompany.tienda;
 
-import com.mycompany.tienda.PERSISTENCIA.PersistenciaController;
+import com.mycompany.tienda.IGU.Login;
 
 /**
  *
  * @author xthy
  */
 public class Tienda {
-
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        
-        PersistenciaController controlPersis = new PersistenciaController();
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            new Login().setVisible(true);
+        });
     }
 }

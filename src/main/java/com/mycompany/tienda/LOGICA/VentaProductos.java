@@ -4,7 +4,9 @@
  */
 package com.mycompany.tienda.LOGICA;
 
+import java.io.Serializable;
 import javax.persistence.EmbeddedId;
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
@@ -13,26 +15,44 @@ import javax.persistence.MapsId;
  *
  * @author xthy
  */
-public class VentaProductos {
-     @EmbeddedId
-     private VentaProductoId id;
-     
-     @ManyToOne
-     @MapsId("ventaId")
-     @JoinColumn(name="producto_id")
-     private Producto producto;
-     
-     private int cantidad;
-     
-     public double getSubtotal(){
-         return cantidad*producto.getPrecio();
-     }
+@Entity
+public class VentaProductos implements Serializable {
+
+    @EmbeddedId
+    private VentaProductoId id;
+
+    @ManyToOne
+    @MapsId("ventaId")
+    @JoinColumn(name = "venta_id")
+    private Venta venta; // ← ¡ESTO ES LO QUE TE FALTABA!
+
+    @ManyToOne
+    @MapsId("productoId")
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
+
+    private int cantidad;
+
+    public double getSubtotal() {
+        return cantidad * producto.getPrecio();
+    }
+
+    // Getters y setters
+
     public VentaProductoId getId() {
         return id;
     }
 
     public void setId(VentaProductoId id) {
         this.id = id;
+    }
+
+    public Venta getVenta() {
+        return venta;
+    }
+
+    public void setVenta(Venta venta) {
+        this.venta = venta;
     }
 
     public Producto getProducto() {
@@ -51,12 +71,13 @@ public class VentaProductos {
         this.cantidad = cantidad;
     }
 
-    public VentaProductos(VentaProductoId id, Producto producto, int cantidad) {
+    public VentaProductos() {}
+
+    public VentaProductos(VentaProductoId id, Venta venta, Producto producto, int cantidad) {
         this.id = id;
+        this.venta = venta;
         this.producto = producto;
         this.cantidad = cantidad;
     }
-
-
-
 }
+
