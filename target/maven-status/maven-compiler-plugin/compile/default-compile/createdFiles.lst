@@ -55,6 +55,7 @@ com\mycompany\tienda\IGU\Productos$ButtonRenderer.class
 com\mycompany\tienda\IGU\CategoriaProductos.class
 com\mycompany\tienda\IGU\CrearProducto$5.class
 com\mycompany\tienda\IGU\CrearVenta$2.class
+com\mycompany\tienda\LOGICA\LogicaController$GeneradorRemito.class
 com\mycompany\tienda\LOGICA\LogicaController$ProductoCantidad.class
 com\mycompany\tienda\PERSISTENCIA\CategoriaJpaController.class
 com\mycompany\tienda\PERSISTENCIA\exceptions\PreexistingEntityException.class

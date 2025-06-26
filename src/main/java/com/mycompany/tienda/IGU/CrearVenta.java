@@ -263,6 +263,7 @@ pnlRemito.setLayout(new BoxLayout(pnlRemito, BoxLayout.Y_AXIS));
         productosEnVenta.clear();
         actualizarPanelRemito();
         actualizarTotal();
+        this.dispose();
 
     } catch (Exception ex) {
         JOptionPane.showMessageDialog(this, "Error al crear la venta: " + ex.getMessage());

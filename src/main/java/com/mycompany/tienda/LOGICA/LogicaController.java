@@ -5,7 +5,12 @@
 package com.mycompany.tienda.LOGICA;
 
 import com.mycompany.tienda.PERSISTENCIA.PersistenciaController;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +19,38 @@ import java.util.List;
  * @author xthy
  */
 public class LogicaController {
+    public class GeneradorRemito {
+
+    public static void generarRemito(Venta venta, String rutaArchivo) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(rutaArchivo))) {
+            writer.write("********** REMITO DE VENTA **********");
+            writer.newLine();
+            writer.write("Fecha: " + venta.getFecha().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+            writer.newLine();
+            writer.write("ID Venta: " + venta.getId());
+            writer.newLine();
+            writer.write("-------------------------------");
+            writer.newLine();
+
+            for (VentaProductos vp : venta.getProductos()) {
+                String linea = String.format("%-20s Cant: %d  Precio Unit: $%.2f  Subtotal: $%.2f",
+                        vp.getProducto().getNombre(),
+                        vp.getCantidad(),
+                        vp.getProducto().getPrecio(),
+                        vp.getSubtotal());
+                writer.write(linea);
+                writer.newLine();
+            }
+
+            writer.write("-------------------------------");
+            writer.newLine();
+            writer.write(String.format("TOTAL: $%.2f", venta.getTotal()));
+            writer.newLine();
+            writer.write("***********************************");
+            writer.newLine();
+        }
+    }
+}
 public static class ProductoCantidad {
     private Producto producto;
     private int cantidad;
@@ -115,7 +152,7 @@ public void crearVenta(List<ProductoCantidad> productosCantidad) throws Exceptio
         }
 
         producto.setStock(producto.getStock() - pc.getCantidad());
-        editProducto(producto);  // actualizar stock en BD (llamando al método persistencia)
+        editProducto(producto);  // Actualizar stock en BD
 
         VentaProductoId id = new VentaProductoId();
         id.setProductoId(producto.getId());
@@ -131,8 +168,23 @@ public void crearVenta(List<ProductoCantidad> productosCantidad) throws Exceptio
 
     venta.setProductos(listaVentaProductos);
 
-    // Ahora guardamos venta (y productos) en base de datos
+    // Guardar la venta en la base de datos
     persContr.guardarVenta(venta);
+
+    // Crear carpeta remitos si no existe
+    File carpetaRemitos = new File("remitos");
+    if (!carpetaRemitos.exists()) {
+        carpetaRemitos.mkdirs();
+    }
+
+    // Generar el archivo TXT tipo remito
+    try {
+        String rutaArchivo = "remitos/remito_" + venta.getId() + ".txt";
+        GeneradorRemito.generarRemito(venta, rutaArchivo);
+        System.out.println("Remito generado en: " + rutaArchivo);
+    } catch (IOException e) {
+        System.err.println("Error generando remito: " + e.getMessage());
+    }
 }
   
 
