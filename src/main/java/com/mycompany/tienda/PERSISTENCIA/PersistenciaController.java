@@ -74,4 +74,8 @@ public class PersistenciaController {
             ArrayList<Producto> listaProductos=new ArrayList<Producto>(lista);
             return listaProductos;
     }
+    
+ public void guardarVenta(Venta venta) throws Exception {
+    ventJpa.create(venta);
+}
 }

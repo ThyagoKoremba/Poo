@@ -30,7 +30,6 @@ public class CrearProducto extends javax.swing.JFrame {
         listaCategorias = control.CategoriasAll();
         cmbCategoria.setModel(new DefaultComboBoxModel<>(listaCategorias.toArray(new Categoria[0])));
 
-        // Para que en el combobox solo se muestre la descripción de la categoría
         cmbCategoria.setRenderer(new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index,

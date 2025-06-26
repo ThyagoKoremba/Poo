@@ -1,3 +1,4 @@
+com\mycompany\tienda\IGU\CrearVenta$1.class
 com\mycompany\tienda\IGU\CrearProducto$3.class
 com\mycompany\tienda\IGU\EditarCategoria$3.class
 com\mycompany\tienda\LOGICA\Venta.class
@@ -6,14 +7,18 @@ com\mycompany\tienda\exceptions\NonexistentEntityException.class
 com\mycompany\tienda\IGU\Categorias$ButtonEditor.class
 com\mycompany\tienda\IGU\CrearCategoria$2.class
 com\mycompany\tienda\LOGICA\Producto_.class
+com\mycompany\tienda\IGU\CrearVenta$4.class
 com\mycompany\tienda\LOGICA\VentaProductos.class
 com\mycompany\tienda\IGU\TiendaBase.class
 com\mycompany\tienda\IGU\EditarProducto$2.class
+com\mycompany\tienda\IGU\CrearVenta$ProductoVendido.class
 com\mycompany\tienda\IGU\Productos$3.class
 com\mycompany\tienda\IGU\EditarProducto.class
 com\mycompany\tienda\IGU\CrearProducto.class
+com\mycompany\tienda\IGU\CrearVenta.class
 com\mycompany\tienda\IGU\Login$1.class
 com\mycompany\tienda\IGU\Categorias$2.class
+com\mycompany\tienda\IGU\CrearVenta$ButtonRenderer.class
 com\mycompany\tienda\IGU\CrearCategoria$1.class
 com\mycompany\tienda\IGU\CrearProducto$2.class
 com\mycompany\tienda\IGU\EditarCategoria$2.class
@@ -22,8 +27,10 @@ com\mycompany\tienda\IGU\TiendaBase$2.class
 com\mycompany\tienda\PERSISTENCIA\exceptions\IllegalOrphanException.class
 com\mycompany\tienda\IGU\CrearProducto$4.class
 com\mycompany\tienda\LOGICA\VentaProductos_.class
+com\mycompany\tienda\IGU\CrearVenta$ButtonEditor.class
 com\mycompany\tienda\IGU\EditarProducto$1.class
 com\mycompany\tienda\IGU\Categorias$3.class
+com\mycompany\tienda\IGU\CrearVenta$3.class
 com\mycompany\tienda\PERSISTENCIA\exceptions\NonexistentEntityException.class
 com\mycompany\tienda\IGU\Categorias.class
 com\mycompany\tienda\PERSISTENCIA\PersistenciaController.class
@@ -47,6 +54,8 @@ com\mycompany\tienda\IGU\Productos$4.class
 com\mycompany\tienda\IGU\Productos$ButtonRenderer.class
 com\mycompany\tienda\IGU\CategoriaProductos.class
 com\mycompany\tienda\IGU\CrearProducto$5.class
+com\mycompany\tienda\IGU\CrearVenta$2.class
+com\mycompany\tienda\LOGICA\LogicaController$ProductoCantidad.class
 com\mycompany\tienda\PERSISTENCIA\CategoriaJpaController.class
 com\mycompany\tienda\PERSISTENCIA\exceptions\PreexistingEntityException.class
 com\mycompany\tienda\IGU\Productos.class

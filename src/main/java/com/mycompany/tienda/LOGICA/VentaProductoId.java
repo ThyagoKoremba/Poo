@@ -48,3 +48,4 @@ public class VentaProductoId implements Serializable {
             && Objects.equals(this.productoId, other.productoId);
     }
 }
+    

@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package com.mycompany.tienda.IGU;
-
 import com.mycompany.tienda.LOGICA.Cajero;
 
 /**
@@ -133,7 +132,9 @@ private Cajero cajero;
     }//GEN-LAST:event_CategoriasActionPerformed
 
     private void VentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VentasActionPerformed
-        // TODO add your handling code here:
+    CrearVenta ventanaVenta = new CrearVenta();
+    ventanaVenta.setVisible(true); // Mostrar la ventana
+        ventanaVenta.setLocationRelativeTo(null);
     }//GEN-LAST:event_VentasActionPerformed
 
     private void ProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ProductosActionPerformed
